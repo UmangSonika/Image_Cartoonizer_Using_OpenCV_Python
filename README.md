@@ -22,7 +22,7 @@ But you can easily change the code and then you can give the image location dire
                                  
 I will tell you how you can install those libraries in window. If you are a linux or mac user you can search how to pip intall and library name of google to find instructions...                      
                                                    
- 1.OpenCv : Type pip install opencv-python in cmd. 
+ 1.OpenCv : Type pip install opencv-python in cmd.                          
  2.matplotlib : Type pip install matplotlib in cmd.                               
  3.argparse : Type pip install argparse in cmd.
                                                     
