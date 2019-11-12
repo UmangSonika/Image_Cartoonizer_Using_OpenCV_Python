@@ -61,11 +61,11 @@ gray = cv2.cvtColor(image_org,cv2.COLOR_BGR2GRAY)
 #Now we will use median blurr for the smoothening funtion of image.
 # I am doing it with blocksize 7 and you can change it as your wish.
 
-image_blurr = cv2.medianBlur(gray,7)
+image_blurr = cv2.medianBlur(gray,1)
 
 # Now to detect the edges in the image we will use adaptive thresold method with block size 9
 
-img_edge = cv2.adaptiveThreshold(image_blurr,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,9,2)
+img_edge = cv2.adaptiveThreshold(image_blurr,255,cv2.ADAPTIVE_THRESH_MEAN_C,cv2.THRESH_BINARY,5,4)
 
 #since we are done with all the filter so now we will convert our image back to BGR from Gray
 
@@ -76,20 +76,22 @@ img_edge = cv2.cvtColor(img_edge,cv2.COLOR_GRAY2BGR)
 #So basically what this wil do is just enhance the edges or boundaries and smoothen the other areas so as to create a cartoon effect.
 
 cartoon = cv2.bitwise_and(image_org,img_edge)
+cartoon_new = cv2.bitwise_or(image_org,img_edge)
 
 #Now again we will have to change BGR to RGB for matplotlib
 
 cartoon_mat = cv2.cvtColor(cartoon,cv2.COLOR_BGR2RGB)
+cartoon_mat_new = cv2.cvtColor(cartoon_new,cv2.COLOR_BGR2RGB)
 
-total = [image_org_mat,cartoon_mat] #array having the two images 
-title = ["Original_Image","Cartoon_Image"] #title for each image
+total = [image_org_mat,cartoon_mat,cartoon_mat_new] #array having the two images 
+title = ["Original_Image","Cartoon_Image","Newly Cartoon Image"] #title for each image
 
 #cv2.imshow("image",image_org)
 #cv2.imshow("image2",cartoon_mat)
 #The above two lines can be used if you don't know matplotlib
 
-for i in range(2):
-    plt.subplot(1,2,i+1), plt.imshow(total[i]) #this will show the image in the window having 1 row and 2 column
+for i in range(3):
+    plt.subplot(1,3,i+1), plt.imshow(total[i]) #this will show the image in the window having 1 row and 2 column
     plt.xticks([]),plt.yticks([]) #This will remove the scaling of images
     plt.title(title[i]) #This will print the title on top of each column
 
